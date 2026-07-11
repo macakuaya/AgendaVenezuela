@@ -120,10 +120,10 @@ compila y publica la app automáticamente.
 
 Configuración única (ya hecha): **Settings → Pages → Source: GitHub Actions**.
 
-🌍 URL pública: **https://macakuaya.github.io/agenda_venezuela/**
+🌍 URL pública: **https://macakuaya.github.io/AgendaVenezuela/**
 
-> El `base` en `vite.config.ts` (`/agenda_venezuela/`) debe coincidir con el nombre
-> del repositorio para que carguen bien las imágenes y estilos.
+> El `base` en `vite.config.ts` está en `'./'` (rutas relativas), así que la app
+> funciona bajo cualquier nombre de repositorio sin tener que tocar la configuración.
 
 ---
 
