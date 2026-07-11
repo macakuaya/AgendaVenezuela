@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useMemo } from 'react'
 import { useTokens } from '../hooks/useTokens'
 import type { TokenDef } from '../design/tokens'
-import { StarIcon, ShareIcon } from '../components/Icons'
+import { StarIcon } from '../components/Icons'
 
 const GROUP_ORDER: TokenDef['group'][] = ['Color', 'Tipografía', 'Forma', 'Espaciado']
 
@@ -99,35 +99,24 @@ export default function DesignSystem() {
           <h3 style={{ marginTop: 0 }}>Vista previa</h3>
 
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 20 }}>
-            <button className="btn btn--primary">
-              <StarIcon className="star" /> Me interesa
-            </button>
-            <button className="btn btn--primary btn--interested">
-              <StarIcon className="star" filled /> Te interesa
-            </button>
-            <button className="btn btn--ghost btn--icon-only" aria-label="Compartir">
-              <ShareIcon className="star" />
-            </button>
             <button className="btn btn--primary btn--sm">Enviar evento</button>
+            <button className="btn btn--ghost btn--sm">Botón secundario</button>
           </div>
 
           <article className="card">
-            <div className="card__media">
-              <img src={`${import.meta.env.BASE_URL}events/a-tu-lado-venezuela.svg`} alt="Ejemplo" />
-            </div>
-            <div className="card__body">
-              <p className="card__date">Jue, 26 ene · 14:00</p>
-              <h2 className="card__title">Nombre del evento de ejemplo</h2>
-              <p className="card__address">Lugar del evento · Caracas</p>
-              <div className="card__actions">
-                <button className="btn btn--primary">
-                  <StarIcon className="star" /> Me interesa
-                </button>
-                <button className="btn btn--ghost btn--icon-only" aria-label="Compartir">
-                  <ShareIcon className="star" />
-                </button>
+            <a className="card__link card__link--static">
+              <div className="card__media">
+                <img src={`${import.meta.env.BASE_URL}events/a-tu-lado-venezuela.svg`} alt="Ejemplo" />
               </div>
-            </div>
+              <div className="card__body">
+                <h2 className="card__title">Nombre del evento de ejemplo</h2>
+                <p className="card__meta">Jue, 26 ene · 14:00 · Lugar del evento · Barcelona</p>
+                <p className="card__benef">A beneficio de una buena causa</p>
+              </div>
+            </a>
+            <button className="card__star" aria-pressed="true" aria-label="Guardar evento">
+              <StarIcon className="star" filled />
+            </button>
           </article>
 
           <pre className="ds__code">{cssSnippet}</pre>

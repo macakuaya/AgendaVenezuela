@@ -180,8 +180,13 @@ button {
   gap: 20px;
 }
 
-/* ---------- Event card ---------- */
+/* ---------- Event card (compact list row) ---------- */
+.event-list {
+  gap: 14px;
+}
+
 .card {
+  position: relative;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -189,10 +194,25 @@ button {
   overflow: hidden;
 }
 
+.card__link {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.card__link:hover {
+  background: color-mix(in srgb, var(--color-text) 4%, transparent);
+}
+
 .card__media {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1.91 / 1;
+  width: 104px;
+  height: 104px;
+  flex: none;
+  border-radius: 12px;
+  overflow: hidden;
   background: color-mix(in srgb, var(--color-text) 6%, transparent);
 }
 
@@ -203,51 +223,73 @@ button {
 }
 
 .card__body {
-  padding: var(--space-card);
-}
-
-.card__date {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--color-muted);
-  margin: 0 0 6px;
+  flex: 1;
+  min-width: 0;
+  /* leave room for the star button in the top-right */
+  padding-right: 34px;
 }
 
 .card__title {
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.01em;
   line-height: 1.25;
   margin: 0 0 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.card__address {
-  font-size: 15px;
+.card__meta,
+.card__benef {
+  font-size: 14px;
   color: var(--color-muted);
-  margin: 0 0 14px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.card__actions {
+.card__benef {
+  font-size: 13px;
+  margin-top: 6px;
+  opacity: 0.9;
+}
+
+.card__star {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
   display: flex;
-  gap: 10px;
-}
-
-.card__actions .btn--primary {
-  flex: 1;
-}
-
-/* Interested (active) state */
-.btn--interested {
-  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  cursor: pointer;
   color: var(--color-text);
-  border-color: transparent;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.card__star:hover {
+  background: color-mix(in srgb, var(--color-text) 8%, transparent);
+}
+
+.card__star:active {
+  transform: scale(0.92);
+}
+
+.card__star[aria-pressed='true'] {
+  color: var(--color-accent);
 }
 
 .star {
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   flex: none;
 }
 
