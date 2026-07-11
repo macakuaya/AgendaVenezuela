@@ -2,7 +2,7 @@
 
 # 🌸 Agenda Venezuela 🌸
 
-```
+
         ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀
        ╔════════════════════════════════╗
        ║       AGENDA  VENEZUELA         ║
@@ -11,7 +11,6 @@
           /\___/\      │
      ❀   ( o   o )     │       
        ~ ✿ ~ ❀ ~ ✿ ~ ❀ ~ ✿ ~ ❀ ~ ✿ ~
-```
 
 **Los eventos que están pasando en Venezuela, en un solo lugar.**
 Guárdalos, compártelos y no te pierdas ni uno. 🎉
