@@ -2,7 +2,7 @@ import { LOCALE } from '../config'
 
 const weekday = new Intl.DateTimeFormat(LOCALE, { weekday: 'short' })
 const dayMonth = new Intl.DateTimeFormat(LOCALE, { day: 'numeric', month: 'short' })
-const time = new Intl.DateTimeFormat(LOCALE, { hour: '2-digit', minute: '2-digit' })
+const time = new Intl.DateTimeFormat(LOCALE, { hour: 'numeric', minute: '2-digit' })
 
 function cap(s: string) {
   return s.charAt(0).toUpperCase() + s.slice(1)
@@ -11,8 +11,17 @@ function cap(s: string) {
 // Date-only strings ("2026-07-10") are parsed as UTC by the Date constructor,
 // which can shift to the previous day in negative-offset timezones (e.g. UTC-4).
 // Appending a local time forces local-midnight parsing so the day is correct.
-function parseDate(iso: string): Date {
+export function parseDate(iso: string): Date {
   return new Date(iso.includes('T') ? iso : `${iso}T00:00:00`)
+}
+
+/** True if the event's last day is before today (local). */
+export function isPastEvent(startISO: string, endISO?: string): boolean {
+  const end = parseDate(endISO || startISO)
+  const endDay = new Date(end.getFullYear(), end.getMonth(), end.getDate())
+  const now = new Date()
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  return endDay < today
 }
 
 /**

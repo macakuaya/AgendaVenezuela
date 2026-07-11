@@ -1,54 +1,76 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import EventCard from '../components/EventCard'
+import { useInterested } from '../hooks/useInterested'
+import { parseDate, isPastEvent } from '../lib/date'
 import eventsData from '../data/events.json'
 import type { EventItem } from '../types'
 
-// Visual-only tabs for now (see plan). "Todos" is the active default.
-const TABS = ['Todos', 'Esta semana', 'Este mes', 'Online'] as const
+type TabId = 'todos' | 'guardados' | 'pasados'
+
+const events = (eventsData as EventItem[]).slice()
+
+function byDateAsc(a: EventItem, b: EventItem) {
+  return parseDate(a.startDate).getTime() - parseDate(b.startDate).getTime()
+}
+
+const EMPTY: Record<TabId, string> = {
+  todos: 'Todavía no hay eventos próximos. ¡Vuelve pronto!',
+  guardados: 'Aún no has guardado eventos. Toca la estrella para guardarlos.',
+  pasados: 'No hay eventos pasados.',
+}
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<string>(TABS[0])
-  const [toast, setToast] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState<TabId>('todos')
+  const { isInterested } = useInterested()
 
-  const events = useMemo(() => {
-    return [...(eventsData as EventItem[])].sort(
-      (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
-    )
-  }, [])
+  const upcoming = useMemo(
+    () => events.filter((e) => !isPastEvent(e.startDate, e.endDate)).sort(byDateAsc),
+    [],
+  )
+  const past = useMemo(
+    () => events.filter((e) => isPastEvent(e.startDate, e.endDate)).sort(byDateAsc).reverse(),
+    [],
+  )
+  const saved = useMemo(
+    () => events.filter((e) => isInterested(e.id)).sort(byDateAsc),
+    [isInterested],
+  )
 
-  const showToast = (message: string) => setToast(message)
+  const tabs: { id: TabId; label: string; count?: number }[] = [
+    { id: 'todos', label: 'Todos' },
+    { id: 'guardados', label: 'Guardados', count: saved.length },
+    { id: 'pasados', label: 'Pasados' },
+  ]
 
-  useEffect(() => {
-    if (!toast) return
-    const t = setTimeout(() => setToast(null), 2200)
-    return () => clearTimeout(t)
-  }, [toast])
+  const list =
+    activeTab === 'guardados' ? saved : activeTab === 'pasados' ? past : upcoming
 
   return (
     <div className="app">
       <Header />
       <main className="container">
         <nav className="tabs" aria-label="Filtros">
-          {TABS.map((tab) => (
+          {tabs.map((tab) => (
             <button
-              key={tab}
+              key={tab.id}
               type="button"
-              className={`tab${tab === activeTab ? ' tab--active' : ''}`}
-              onClick={() => setActiveTab(tab)}
+              className={`tab${tab.id === activeTab ? ' tab--active' : ''}`}
+              onClick={() => setActiveTab(tab.id)}
             >
-              {tab}
+              {tab.label}
+              {tab.count ? ` (${tab.count})` : ''}
             </button>
           ))}
         </nav>
 
-        {events.length === 0 ? (
-          <p className="empty">Todavía no hay eventos. ¡Vuelve pronto!</p>
+        {list.length === 0 ? (
+          <p className="empty">{EMPTY[activeTab]}</p>
         ) : (
           <div className="event-list">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} onShared={showToast} />
+            {list.map((event) => (
+              <EventCard key={event.id} event={event} />
             ))}
           </div>
         )}
@@ -59,8 +81,6 @@ export default function Home() {
           </Link>
         </footer>
       </main>
-
-      {toast && <div className="toast" role="status">{toast}</div>}
     </div>
   )
 }
