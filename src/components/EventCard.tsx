@@ -1,7 +1,7 @@
 import type { EventItem } from '../types'
 import { formatEventDate } from '../lib/date'
 import { useInterested } from '../hooks/useInterested'
-import { StarIcon } from './Icons'
+import { HeartIcon, StarIcon } from './Icons'
 
 interface Props {
   event: EventItem
@@ -31,6 +31,12 @@ export default function EventCard({ event }: Props) {
         <h2 className="card__title">{event.name}</h2>
         {location && <p className="card__loc">{location}</p>}
         {event.address && <p className="card__loc">{event.address}</p>}
+        {event.beneficiary && (
+          <p className="card__beneficiary">
+            <HeartIcon className="card__beneficiary-icon" />
+            A beneficio de {event.beneficiary}
+          </p>
+        )}
       </div>
     </>
   )

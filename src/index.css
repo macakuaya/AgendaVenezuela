@@ -263,6 +263,24 @@ a.card__link:hover {
   overflow: hidden;
 }
 
+.card__beneficiary {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 6px 0 0;
+  line-height: 1.35;
+}
+
+.card__beneficiary-icon {
+  width: 13px;
+  height: 13px;
+  flex: none;
+  margin-top: 2px;
+  color: #e11d48;
+}
+
 .card__star {
   position: absolute;
   top: 8px;
