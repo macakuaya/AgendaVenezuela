@@ -29,18 +29,20 @@
     "note": "Campaña «Ayuda Humanitaria para Venezuela» (2da fase) de Gente Activa. Contacto: Juanjo (@genteactivabcn). Sin dirección fija; las direcciones de entrega están en el Instagram."
   },
   {
-    "id": "a-tu-lado-venezuela",
-    "image": "events/a-tu-lado-venezuela.svg",
-    "startDate": "2026-07-11",
-    "endDate": "2026-07-12",
-    "allDay": true,
-    "name": "A tu lado Venezuela",
+    "id": "juntos-por-venezuela",
+    "image": "events/juntos-por-venezuela.svg",
+    "startDate": "2026-07-11T17:00:00",
+    "endDate": "2026-07-11T23:00:00",
+    "name": "Juntos por Venezuela",
+    "venue": "El Mas Vell",
+    "address": "Carrer de Barcelona, 2",
+    "city": "El Masnou",
     "url": "https://entradium.com/events/a-tu-lado-venezuela",
     "organizer": "Juan Carlos Pinedo (por confirmar)",
     "beneficiary": "Meals 4 Hope",
-    "needs": "Aporte económico (compra de entrada)",
+    "needs": "Aporte económico (entrada desde 5 €)",
     "ticketUrl": "https://entradium.com/events/a-tu-lado-venezuela",
-    "note": "Aparición especial de La Poderosa, el mejor restaurante de empanadas de Barcelona (actualmente cerrado)."
+    "note": "Con cocineros, músicos, DJs, comediantes, artistas y talleres. Aparición especial de La Poderosa, el mejor restaurante de empanadas de Barcelona (actualmente cerrado). Aporte desde 5 €."
   },
   {
     "id": "tothom-amb-venezuela",

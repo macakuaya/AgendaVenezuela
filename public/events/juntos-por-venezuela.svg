@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect x="0" y="0" width="1200" height="630" fill="#2438c8"/>
+  <g font-family="Helvetica, Arial, sans-serif" fill="#ffffff">
+    <text x="80" y="150" font-size="30" font-weight="700" opacity="0.85" letter-spacing="3">JUNTOS POR</text>
+    <text x="80" y="270" font-size="120" font-weight="800" fill="#ff8a1e">VENEZUELA</text>
+    <text x="80" y="345" font-size="28" font-weight="600" opacity="0.9">Cocineros . Musicos . DJs . Comediantes . Artistas . Talleres</text>
+    <text x="80" y="470" font-size="34" font-weight="700">Sabado 11 de julio . 17h a 23h</text>
+    <text x="80" y="520" font-size="30" font-weight="500" opacity="0.9">El Mas Vell . El Masnou . Aporte desde 5 EUR</text>
+    <text x="80" y="565" font-size="26" font-weight="500" opacity="0.75">A beneficio de Meals 4 Hope</text>
+  </g>
+</svg>
