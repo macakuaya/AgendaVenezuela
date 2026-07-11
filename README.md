@@ -2,6 +2,13 @@
 
 # 🌸 Agenda Venezuela 🌸
 
+**Los eventos que están pasando en Venezuela, en un solo lugar.**
+Guárdalos, compártelos y no te pierdas ni uno. 🎉
+
+</div>
+
+---
+
 
         ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀
        ╔════════════════════════════════╗
@@ -11,13 +18,6 @@
           /\___/\      │
      ❀   ( o   o )     │       
        ~ ✿ ~ ❀ ~ ✿ ~ ❀ ~ ✿ ~ ❀ ~ ✿ ~
-
-**Los eventos que están pasando en Venezuela, en un solo lugar.**
-Guárdalos, compártelos y no te pierdas ni uno. 🎉
-
-</div>
-
----
 
 ## 🐱 ¿Qué es esto? (explicado como si tuvieras 5 años)
 
