@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect x="0" y="0" width="1200" height="210" fill="#FFCC00"/>
+  <rect x="0" y="210" width="1200" height="210" fill="#00247D"/>
+  <rect x="0" y="420" width="1200" height="210" fill="#CF142B"/>
+  <rect x="0" y="0" width="1200" height="630" fill="#000000" opacity="0.42"/>
+  <g font-family="Helvetica, Arial, sans-serif" fill="#ffffff">
+    <text x="80" y="250" font-size="34" font-weight="700" opacity="0.85" letter-spacing="2">POP UP SOLIDARIO</text>
+    <text x="80" y="360" font-size="90" font-weight="800">Pop Up de</text>
+    <text x="80" y="450" font-size="90" font-weight="800">reposteria</text>
+    <text x="80" y="530" font-size="34" font-weight="500" opacity="0.9">A beneficio de World Central Kitchen</text>
+  </g>
+</svg>
