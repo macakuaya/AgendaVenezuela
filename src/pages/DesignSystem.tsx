@@ -113,7 +113,7 @@ export default function DesignSystem() {
 
           <article className="card">
             <div className="card__media">
-              <img src={`${import.meta.env.BASE_URL}events/watercolor.svg`} alt="Ejemplo" />
+              <img src={`${import.meta.env.BASE_URL}events/a-tu-lado-venezuela.svg`} alt="Ejemplo" />
             </div>
             <div className="card__body">
               <p className="card__date">Jue, 26 ene · 14:00</p>
