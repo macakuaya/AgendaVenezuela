@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react'
 import Header from '../components/Header'
 import EventCard from '../components/EventCard'
 import { useInterested } from '../hooks/useInterested'
-import { parseDate, isPastEvent } from '../lib/date'
+import { parseDate, isPastEvent, isTodayEvent } from '../lib/date'
 import eventsData from '../data/events.json'
 import type { EventItem } from '../types'
 
-type TabId = 'todos' | 'guardados' | 'pasados'
+type TabId = 'todos' | 'hoy' | 'guardados' | 'pasados'
 
 const events = (eventsData as EventItem[]).slice()
 
@@ -16,6 +16,7 @@ function byDateAsc(a: EventItem, b: EventItem) {
 
 const EMPTY: Record<TabId, string> = {
   todos: 'Todavía no hay eventos próximos. ¡Vuelve pronto!',
+  hoy: 'No hay eventos para hoy.',
   guardados: 'Aún no has guardado eventos. Toca la estrella para guardarlos.',
   pasados: 'No hay eventos pasados.',
 }
@@ -32,6 +33,10 @@ export default function Home() {
     () => events.filter((e) => isPastEvent(e.startDate, e.endDate)).sort(byDateAsc).reverse(),
     [],
   )
+  const today = useMemo(
+    () => events.filter((e) => isTodayEvent(e.startDate, e.endDate)).sort(byDateAsc),
+    [],
+  )
   const saved = useMemo(
     () => events.filter((e) => isInterested(e.id)).sort(byDateAsc),
     [isInterested],
@@ -39,12 +44,19 @@ export default function Home() {
 
   const tabs: { id: TabId; label: string; count?: number }[] = [
     { id: 'todos', label: 'Todos' },
+    { id: 'hoy', label: 'Hoy', count: today.length },
     { id: 'guardados', label: 'Guardados', count: saved.length },
     { id: 'pasados', label: 'Pasados' },
   ]
 
   const list =
-    activeTab === 'guardados' ? saved : activeTab === 'pasados' ? past : upcoming
+    activeTab === 'hoy'
+      ? today
+      : activeTab === 'guardados'
+        ? saved
+        : activeTab === 'pasados'
+          ? past
+          : upcoming
 
   return (
     <div className="app">

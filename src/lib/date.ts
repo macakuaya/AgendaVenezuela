@@ -24,6 +24,17 @@ export function isPastEvent(startISO: string, endISO?: string): boolean {
   return endDay < today
 }
 
+/** True if today (local) falls within the event's date range. */
+export function isTodayEvent(startISO: string, endISO?: string): boolean {
+  const start = parseDate(startISO)
+  const end = parseDate(endISO || startISO)
+  const startDay = new Date(start.getFullYear(), start.getMonth(), start.getDate())
+  const endDay = new Date(end.getFullYear(), end.getMonth(), end.getDate())
+  const now = new Date()
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  return startDay <= today && today <= endDay
+}
+
 /**
  * Formats an event's date range in Spanish, e.g.:
  *  - Single day:        "Jue, 26 ene · 14:00"
