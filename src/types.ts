@@ -38,6 +38,8 @@ export interface EventItem {
   website?: string
   /** Line-up of artists/performers. */
   lineup?: string[]
+  /** Opening hours / schedule, e.g. per day for multi-day events. */
+  hours?: string
   /** Free-form note (e.g. special appearances, logistics). */
   note?: string
 }

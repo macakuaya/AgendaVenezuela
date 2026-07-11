@@ -106,7 +106,7 @@ export default function DesignSystem() {
           <article className="card">
             <a className="card__link card__link--static">
               <div className="card__media">
-                <img src={`${import.meta.env.BASE_URL}events/a-tu-lado-venezuela.svg`} alt="Ejemplo" />
+                <img src={`${import.meta.env.BASE_URL}events/mercadillo-ropa.svg`} alt="Ejemplo" />
               </div>
               <div className="card__body">
                 <h2 className="card__title">Nombre del evento de ejemplo</h2>
