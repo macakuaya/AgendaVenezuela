@@ -7,7 +7,6 @@ Guárdalos, compártelos y no te pierdas ni uno. 🎉
 
 </div>
 
----
 
 
         ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀
@@ -27,7 +26,6 @@ y dónde es. Si algo te gusta, le das a la **estrellita** ⭐ ("Me interesa") y 
 guarda para ti. Y si quieres avisarle a un pana, le das a **compartir** 📤 y le
 mandas el link. ¡Así de fácil!
 
----
 
 ## ✨ ¿Qué puede hacer? (la funcionalidad)
 
@@ -40,7 +38,6 @@ mandas el link. ¡Así de fácil!
 - 🎨 **Design system** (`/#/design-system`): una página secreta solo para ti donde puedes
   cambiar colores, tipografía y estilos en vivo, sin tocar código.
 
----
 
 ## 🧩 ¿Con qué está hecho? (la tecnología, sin complicaciones)
 
@@ -59,7 +56,6 @@ Piensa en la app como una **casa de LEGO**. Cada pieza tiene su función:
 > **Sin servidores, sin backend, sin costos.** Todo es un sitio estático: archivos que
 > el navegador abre directo. Por eso es fácil de publicar y de mantener.
 
----
 
 ## 🛠️ Para desarrollar
 
@@ -70,7 +66,6 @@ npm run build    # arma la versión final (carpeta dist/)
 npm run preview  # revisa la versión final
 ```
 
----
 
 ## 📝 Agregar o editar eventos
 
@@ -94,8 +89,6 @@ Edita `src/data/events.json`. Cada evento se ve así:
 - Para cambiar a dónde lleva el botón **"Enviar evento"** (por ejemplo, un Google Form),
   edita `SUBMIT_EVENT_URL` en `src/config.ts`.
 
----
-
 ## 🎨 Design system (tu página privada)
 
 Entra a `/#/design-system` (enlace discreto en el pie de página). Ahí ajustas los
@@ -104,8 +97,6 @@ Se guardan en tu dispositivo; para hacerlos permanentes usa **"Exportar CSS"** y
 pega el resultado en el bloque `:root` de `src/index.css`.
 
 Estilo inicial: **botones negros sólidos + Helvetica** (fácil de cambiar luego).
-
----
 
 ## 🚀 Publicar en GitHub Pages
 
@@ -118,8 +109,6 @@ Configuración única (ya hecha): **Settings → Pages → Source: GitHub Action
 
 > El `base` en `vite.config.ts` está en `'./'` (rutas relativas), así que la app
 > funciona bajo cualquier nombre de repositorio sin tener que tocar la configuración.
-
----
 
 <div align="center">
 
