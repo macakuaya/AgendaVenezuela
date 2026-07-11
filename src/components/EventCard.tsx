@@ -34,7 +34,7 @@ export default function EventCard({ event }: Props) {
         {event.beneficiary && (
           <p className="card__beneficiary">
             <HeartIcon className="card__beneficiary-icon" />
-            A beneficio de {event.beneficiary}
+            Para: {event.beneficiary}
           </p>
         )}
       </div>
