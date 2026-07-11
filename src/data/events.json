@@ -9,7 +9,9 @@
     "address": "Rambla Francesc Macià, 10",
     "city": "Terrassa",
     "organizer": "Daniela Cedeño",
-    "beneficiary": "Fundación Mires y Gotas de Luz"
+    "beneficiary": "Fundación Mires y Gotas de Luz",
+    "hours": "Viernes 17:00-22:00 · Sábado 11:00-23:00 · Domingo 11:00-22:00",
+    "note": "Campaña «Unidos por Venezuela». El 100% de los fondos va directo a las víctimas del terremoto del 24 de junio."
   },
   {
     "id": "donaciones-medicina-insumos",
@@ -18,13 +20,13 @@
     "allDay": true,
     "name": "Donaciones de medicina e insumos médicos",
     "url": "https://www.instagram.com/reel/DagTAOHsk8G/",
-    "organizer": "@genteactivabcn",
+    "organizer": "Gente Activa (@genteactivabcn)",
     "beneficiary": "La arquidiócesis (canal humanitario a través de la iglesia)",
-    "needs": "Donaciones, cajas, agua y bocadillos para los voluntarios",
+    "needs": "Material médico y de rehabilitación: kits de cirugía traumatológica (fracturas de miembros superiores e inferiores), bastones, andadores, prótesis (para amputados), vendaje elástico tubular, muñequera rígida e inmovilizador cervical rígido. También cajas, agua y bocadillos para los voluntarios.",
     "contactPhone": "+34 612 54 31 62",
     "whatsappUrl": "https://chat.whatsapp.com/Co0WZGboWje6BdWkh6ir8W",
     "instagramUrl": "https://www.instagram.com/reel/DagTAOHsk8G/",
-    "note": "Este evento no tiene dirección fija; las direcciones de entrega están en el Instagram."
+    "note": "Campaña «Ayuda Humanitaria para Venezuela» (2da fase) de Gente Activa. Contacto: Juanjo (@genteactivabcn). Sin dirección fija; las direcciones de entrega están en el Instagram."
   },
   {
     "id": "a-tu-lado-venezuela",
@@ -73,6 +75,7 @@
     "url": "https://www.instagram.com/p/Dand2J5jN2_/",
     "organizer": "Anna Katherina Camacho",
     "beneficiary": "World Central Kitchen",
-    "instagramUrl": "https://www.instagram.com/p/Dand2J5jN2_/"
+    "instagramUrl": "https://www.instagram.com/p/Dand2J5jN2_/",
+    "note": "Venta solidaria de pastelería de Aula Canal (Anna Katherina). Cada dulce ayuda a llevar comida y esperanza a las familias afectadas por el reciente terremoto en Venezuela."
   }
 ]
