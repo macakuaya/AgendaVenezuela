@@ -21,7 +21,7 @@ Guárdalos, compártelos y no te pierdas ni uno. 🎉
 
 ## 🐱 ¿Qué es esto? (explicado como si tuvieras 5 años)
 
-Imagínate una **cartelera mágica** en tu teléfono. Cada evento (un concierto,
+Imagínate una **cartelera** en tu teléfono. Cada evento (un concierto,
 un taller, una feria) es una **tarjeta** con una foto bonita, la fecha, el nombre
 y dónde es. Si algo te gusta, le das a la **estrellita** ⭐ ("Me interesa") y se
 guarda para ti. Y si quieres avisarle a un pana, le das a **compartir** 📤 y le
@@ -48,13 +48,13 @@ Piensa en la app como una **casa de LEGO**. Cada pieza tiene su función:
 
 | Pieza | Qué es | Para qué sirve (en criollo) |
 |-------|--------|------------------------------|
-| ⚛️ **React** | La caja de LEGO | Arma la pantalla con piezas reutilizables (las tarjetas, los botones). |
-| 🔤 **TypeScript** | Un corrector ortográfico | Avisa los errores **antes** de que rompan algo. |
-| ⚡ **Vite** | El motor | Hace que todo cargue rapidísimo mientras se construye. |
-| 🧭 **React Router** | El mapa | Lleva del Inicio a la página del Design System. |
-| 📄 **events.json** | Un cuaderno | Ahí se escriben los eventos. Sin base de datos, sin complicaciones. |
-| 💾 **localStorage** | La memoria del teléfono | Recuerda qué eventos marcaste con la estrellita. |
-| 🚀 **GitHub Pages** | La casa donde vive | Publica la app gratis en internet para compartir el link. |
+| ⚛️ **React** | Librería de interfaz | Arma la pantalla con piezas reutilizables (las tarjetas, los botones). |
+| 🔤 **TypeScript** | Lenguaje de programación con tipos | Avisa los errores **antes** de que rompan algo. |
+| ⚡ **Vite** | Herramienta de build y servidor de desarrollo | Hace que todo cargue rapidísimo mientras se construye. |
+| 🧭 **React Router** | Enrutador de páginas | Lleva del Inicio a la página del Design System. |
+| 📄 **events.json** | Archivo de datos | Ahí se escriben los eventos. Sin base de datos, sin complicaciones. |
+| 💾 **localStorage** | Almacenamiento del navegador | Recuerda qué eventos marcaste con la estrellita. |
+| 🚀 **GitHub Pages** | Hosting estático gratuito | Publica la app gratis en internet para compartir el link. |
 
 > **Sin servidores, sin backend, sin costos.** Todo es un sitio estático: archivos que
 > el navegador abre directo. Por eso es fácil de publicar y de mantener.
@@ -114,10 +114,10 @@ compila y publica la app automáticamente.
 
 Configuración única (ya hecha): **Settings → Pages → Source: GitHub Actions**.
 
-🌍 URL pública: **https://macakuaya.github.io/agenda_venezuela/**
+🌍 URL pública: **https://macakuaya.github.io/AgendaVenezuela/**
 
-> El `base` en `vite.config.ts` (`/agenda_venezuela/`) debe coincidir con el nombre
-> del repositorio para que carguen bien las imágenes y estilos.
+> El `base` en `vite.config.ts` está en `'./'` (rutas relativas), así que la app
+> funciona bajo cualquier nombre de repositorio sin tener que tocar la configuración.
 
 ---
 
