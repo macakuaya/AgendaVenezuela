@@ -16,9 +16,10 @@ export const LOCALE = 'es-VE'
 // la seguridad la dan las reglas RLS). Pega aqui los tuyos de Supabase
 // (Settings > API). Tambien se pueden pasar por variables de entorno VITE_*.
 export const SUPABASE_URL =
-  import.meta.env.VITE_SUPABASE_URL ?? '' // ej: https://xxxxxxxx.supabase.co
+  import.meta.env.VITE_SUPABASE_URL ?? 'https://chvagaaisaavacofjzyl.supabase.co'
 export const SUPABASE_ANON_KEY =
-  import.meta.env.VITE_SUPABASE_ANON_KEY ?? '' // ej: eyJhbGciOi...
+  import.meta.env.VITE_SUPABASE_ANON_KEY ??
+  'sb_publishable_VyiuIIvdU6XRmfH73SE-rg_AnrhEmJe'
 
 // Nombre del bucket de Storage donde se suben las imagenes de eventos.
 export const EVENT_IMAGES_BUCKET = 'event-images'
