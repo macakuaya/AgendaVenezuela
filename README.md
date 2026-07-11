@@ -11,12 +11,12 @@ Guárdalos, compártelos y no te pierdas ni uno. 🎉
 
 
         ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀ ✿ ❀
-       ╔════════════════════════════════╗
-       ║       AGENDA  VENEZUELA         ║
-       ╚═══════════════╤════════════════╝
+       ╔═══════════════════════════╗
+       ║     AGENDA  VENEZUELA     ║
+       ╚═══════════════╤═══════════╝
                        │
           /\___/\      │
-     ❀   ( o   o )     │       
+         ( o   o )     │       
        ~ ✿ ~ ❀ ~ ✿ ~ ❀ ~ ✿ ~ ❀ ~ ✿ ~
 
 ## 🐱 ¿Qué es esto? (explicado como si tuvieras 5 años)
