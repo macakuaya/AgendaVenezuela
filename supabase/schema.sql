@@ -69,7 +69,7 @@ insert into public.site_content (
 )
 values (
   'community',
-  'Esta es una iniciativa hecha a partir del grupo Barcelona Earthquake Collaboration. Si quieres unirte a nuestro grupo de WhatsApp para recibir noticias verificadas de próximos eventos y noticias solidarias sobre Venezuela,',
+  'Esta es una iniciativa hecha a partir del canal Barcelona Earthquake Collaboration. Si quieres unirte a nuestro canal de WhatsApp para recibir noticias verificadas de próximos eventos y noticias solidarias sobre Venezuela,',
   'únete aquí',
   'https://chat.whatsapp.com/Co0WZGboWje6BdWkh6ir8W'
 )

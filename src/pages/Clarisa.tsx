@@ -337,7 +337,7 @@ export default function Clarisa() {
               />
             </label>
             <label className="form__field">
-              <span>Grupo de WhatsApp</span>
+              <span>Canal de WhatsApp</span>
               <input
                 className="input"
                 type="url"
@@ -445,13 +445,11 @@ export default function Clarisa() {
             <label className="form__field"><span>Organizador</span><input className="input" value={f.organizer} onChange={(e) => set('organizer', e.target.value)} /></label>
             <label className="form__field"><span>A beneficio de</span><input className="input" value={f.beneficiary} onChange={(e) => set('beneficiary', e.target.value)} /></label>
             <label className="form__field"><span>Qué necesita</span><textarea className="input" value={f.needs} onChange={(e) => set('needs', e.target.value)} /></label>
-            <label className="form__field"><span>Horarios</span><input className="input" value={f.hours} onChange={(e) => set('hours', e.target.value)} placeholder="Ej: Vie 17-22 · Sáb 11-23" /></label>
             <label className="form__field"><span>Teléfono</span><input className="input" value={f.contactPhone} onChange={(e) => set('contactPhone', e.target.value)} /></label>
             <label className="form__field"><span>WhatsApp (link)</span><input className="input" value={f.whatsappUrl} onChange={(e) => set('whatsappUrl', e.target.value)} /></label>
             <label className="form__field"><span>Instagram (link)</span><input className="input" value={f.instagramUrl} onChange={(e) => set('instagramUrl', e.target.value)} /></label>
             <label className="form__field"><span>Entradas (link)</span><input className="input" value={f.ticketUrl} onChange={(e) => set('ticketUrl', e.target.value)} /></label>
             <label className="form__field"><span>Web</span><input className="input" value={f.website} onChange={(e) => set('website', e.target.value)} /></label>
-            <label className="form__field"><span>Line-up (uno por línea)</span><textarea className="input" value={f.lineup} onChange={(e) => set('lineup', e.target.value)} /></label>
             <label className="form__field"><span>Nota</span><textarea className="input" value={f.note} onChange={(e) => set('note', e.target.value)} /></label>
           </div>
         )}

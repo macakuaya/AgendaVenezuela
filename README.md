@@ -2,7 +2,7 @@
 
 # 🌸 Agenda Venezuela 🌸
 
-**Los eventos que están pasando en Venezuela, en un solo lugar.**
+**Las iniciativas solidarias por Venezuela, en un solo lugar.**
 Guárdalos, compártelos y no te pierdas ni uno. 🎉
 
 </div>
