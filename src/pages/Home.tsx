@@ -117,10 +117,6 @@ export default function Home() {
       ? list
       : list.filter((event) => cityName(event.city) === selectedCity)
 
-  const resultLabel = `${filteredList.length} ${
-    filteredList.length === 1 ? 'evento' : 'eventos'
-  }`
-
   return (
     <div className="app">
       <Header />
@@ -144,7 +140,6 @@ export default function Home() {
             cities={cityOptions}
             value={selectedCity}
             allValue={ALL_CITIES}
-            resultLabel={resultLabel}
             onChange={setSelectedCity}
           />
         )}

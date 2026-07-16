@@ -12,7 +12,6 @@ interface Props {
   cities: string[]
   value: string
   allValue: string
-  resultLabel: string
   onChange: (city: string) => void
 }
 
@@ -20,7 +19,6 @@ export default function CityFilter({
   cities,
   value,
   allValue,
-  resultLabel,
   onChange,
 }: Props) {
   const [open, setOpen] = useState(false)
@@ -169,9 +167,6 @@ export default function CityFilter({
         )}
       </div>
 
-      <span className="city-filter__count" aria-live="polite">
-        {resultLabel}
-      </span>
     </div>
   )
 }

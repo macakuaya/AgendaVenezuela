@@ -43,6 +43,15 @@ a {
   color: inherit;
 }
 
+/* Prevent iOS/WhatsApp data detectors from turning place names into Maps links. */
+a[x-apple-data-detectors],
+a[href^='x-apple-data-detectors'] {
+  color: inherit !important;
+  text-decoration: none !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -176,7 +185,7 @@ button {
 
 .city-filter {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 10px;
   margin: 0 0 14px;
@@ -308,13 +317,6 @@ button {
     opacity: 0;
     transform: translateY(-4px) scale(0.985);
   }
-}
-
-.city-filter__count {
-  color: var(--color-muted);
-  font-size: 12px;
-  font-weight: 750;
-  white-space: nowrap;
 }
 
 /* ---------- Event list ---------- */
@@ -668,15 +670,6 @@ button {
 }
 
 @media (max-width: 390px) {
-  .city-filter {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-
-  .city-filter__count {
-    grid-column: 2;
-    margin-top: -6px;
-  }
-
   .card__media {
     width: 92px;
     height: 92px;
