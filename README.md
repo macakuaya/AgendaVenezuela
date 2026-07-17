@@ -106,6 +106,8 @@ Conecta el repositorio desde Netlify. La configuración de build vive en
 `netlify.toml`: ejecuta `npm run build`, publica `dist/` y empaqueta la función
 de `netlify/functions/`.
 
+🌍 Producción: **https://agenda-venezuela-org.netlify.app/**
+
 Antes del primer despliegue configura estas variables:
 
 - `VITE_SUPABASE_URL`
