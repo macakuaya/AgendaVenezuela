@@ -5,7 +5,7 @@
 
 insert into public.events (name, image, start_date, end_date, all_day, address, city, organizer, beneficiary, hours, note)
 select 'Mercadillo de ropa',
-       'https://macakuaya.github.io/AgendaVenezuela/events/unidos-por-venezuela-mercadillo.jpg',
+       'https://agenda-venezuela-org.netlify.app/events/unidos-por-venezuela-mercadillo.jpg',
        '2026-07-10', '2026-07-12', true,
        'Rambla Francesc Macià, 10', 'Terrassa',
        'Daniela Cedeño', 'Fundación Mires y Gotas de Luz',
@@ -15,7 +15,7 @@ where not exists (select 1 from public.events where name = 'Mercadillo de ropa')
 
 insert into public.events (name, image, start_date, all_day, url, organizer, beneficiary, needs, contact_phone, whatsapp_url, instagram_url, note)
 select 'Donaciones de medicina e insumos médicos',
-       'https://macakuaya.github.io/AgendaVenezuela/events/gente-activa-medicina.jpg',
+       'https://agenda-venezuela-org.netlify.app/events/gente-activa-medicina.jpg',
        '2026-07-11', true,
        'https://www.instagram.com/reel/DagTAOHsk8G/',
        'Gente Activa (@genteactivabcn)',
@@ -29,7 +29,7 @@ where not exists (select 1 from public.events where name = 'Donaciones de medici
 
 insert into public.events (name, image, start_date, end_date, all_day, venue, address, city, url, organizer, beneficiary, needs, ticket_url, note)
 select 'Juntos por Venezuela',
-       'https://macakuaya.github.io/AgendaVenezuela/events/juntos-por-venezuela.jpg',
+       'https://agenda-venezuela-org.netlify.app/events/juntos-por-venezuela.jpg',
        '2026-07-11T17:00:00', '2026-07-11T23:00:00', false,
        'El Mas Vell', 'Carrer de Barcelona, 2', 'El Masnou',
        'https://entradium.com/events/a-tu-lado-venezuela',
@@ -41,7 +41,7 @@ where not exists (select 1 from public.events where name = 'Juntos por Venezuela
 
 insert into public.events (name, image, start_date, all_day, venue, address, city, url, beneficiary, website, instagram_url, lineup, note)
 select 'Tothom amb Veneçuela!',
-       'https://macakuaya.github.io/AgendaVenezuela/events/tothom-amb-venezuela.jpg',
+       'https://agenda-venezuela-org.netlify.app/events/tothom-amb-venezuela.jpg',
        '2026-07-12T19:00:00', false,
        'Estudi Rosazul', 'Plaça Julio Gonzalez 8 baixos, Poblenou', 'Barcelona',
        'https://www.instagram.com/p/DaQaMEVT4IZ/',
@@ -54,7 +54,7 @@ where not exists (select 1 from public.events where name = 'Tothom amb Veneçuel
 
 insert into public.events (name, image, start_date, end_date, all_day, venue, address, city, url, organizer, beneficiary, instagram_url, note)
 select 'Pop Up de repostería',
-       'https://macakuaya.github.io/AgendaVenezuela/events/venta-solidaria-pasteleria.jpg',
+       'https://agenda-venezuela-org.netlify.app/events/venta-solidaria-pasteleria.jpg',
        '2026-07-17T15:00:00', '2026-07-17T20:00:00', false,
        'Aula Canal', 'C/ Muntaner 562', 'Barcelona',
        'https://www.instagram.com/p/Dand2J5jN2_/',

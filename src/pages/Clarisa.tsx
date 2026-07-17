@@ -1,7 +1,18 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { CLARISA_PIN } from '../config'
+import {
+  clearAdminPin,
+  getStoredAdminPin,
+  storeAdminPin,
+  verifyAdminPin,
+} from '../lib/admin'
 import { isSupabaseConfigured } from '../lib/supabase'
+import {
+  DEFAULT_COMMUNITY_CONTENT,
+  fetchCommunityContent,
+  saveCommunityContent,
+  type CommunityContent,
+} from '../lib/content'
 import {
   createEvent,
   updateEvent,
@@ -14,19 +25,26 @@ import { resizeImage } from '../lib/image'
 import { formatEventDate } from '../lib/date'
 import type { EventItem } from '../types'
 
-const PIN_KEY = 'agenda-vzla:clarisa-unlocked'
-
 function PinGate({ onUnlock }: { onUnlock: () => void }) {
   const [pin, setPin] = useState('')
-  const [error, setError] = useState(false)
+  const [error, setError] = useState('')
+  const [checking, setChecking] = useState(false)
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault()
-    if (pin.trim() === CLARISA_PIN) {
-      sessionStorage.setItem(PIN_KEY, 'true')
+    const candidate = pin.trim()
+    if (!candidate) return
+
+    setChecking(true)
+    setError('')
+    try {
+      await verifyAdminPin(candidate)
+      storeAdminPin(candidate)
       onUnlock()
-    } else {
-      setError(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'No se pudo verificar el PIN.')
+    } finally {
+      setChecking(false)
     }
   }
 
@@ -42,12 +60,14 @@ function PinGate({ onUnlock }: { onUnlock: () => void }) {
           value={pin}
           onChange={(e) => {
             setPin(e.target.value)
-            setError(false)
+            setError('')
           }}
           autoFocus
         />
-        {error && <p className="form__error">PIN incorrecto.</p>}
-        <button type="submit" className="btn btn--primary">Entrar</button>
+        {error && <p className="form__error">{error}</p>}
+        <button type="submit" className="btn btn--primary" disabled={checking}>
+          {checking ? 'Comprobando…' : 'Entrar'}
+        </button>
         <Link to="/" className="clarisa__back">← Volver a la agenda</Link>
       </form>
     </div>
@@ -80,6 +100,7 @@ const emptyForm = {
 
 type FormState = typeof emptyForm
 type Status = 'idle' | 'saving' | 'done' | 'error'
+type ContentStatus = 'idle' | 'saving' | 'done' | 'error'
 
 // Turns a stored event back into the editable form fields.
 function eventToForm(e: EventItem): FormState {
@@ -111,9 +132,8 @@ function eventToForm(e: EventItem): FormState {
 }
 
 export default function Clarisa() {
-  const [unlocked, setUnlocked] = useState(
-    () => sessionStorage.getItem(PIN_KEY) === 'true',
-  )
+  const [unlocked, setUnlocked] = useState(false)
+  const [checkingSession, setCheckingSession] = useState(true)
   const [f, setF] = useState<FormState>({ ...emptyForm })
   const [file, setFile] = useState<File | null>(null)
   const [preview, setPreview] = useState<string | null>(null)
@@ -123,14 +143,47 @@ export default function Clarisa() {
   const [events, setEvents] = useState<EventItem[]>([])
   const [editingId, setEditingId] = useState<string | null>(null)
   const [existingImage, setExistingImage] = useState<string | undefined>()
+  const [community, setCommunity] = useState<CommunityContent>(
+    DEFAULT_COMMUNITY_CONTENT,
+  )
+  const [contentStatus, setContentStatus] = useState<ContentStatus>('idle')
+  const [contentError, setContentError] = useState('')
 
   const loadEvents = () => {
     fetchEvents().then((rows) => rows && setEvents(rows))
   }
 
+  const loadCommunity = () => {
+    fetchCommunityContent().then((content) => content && setCommunity(content))
+  }
+
   useEffect(() => {
-    if (unlocked && isSupabaseConfigured) loadEvents()
+    const storedPin = getStoredAdminPin()
+    if (!storedPin) {
+      setCheckingSession(false)
+      return
+    }
+
+    verifyAdminPin(storedPin)
+      .then(() => setUnlocked(true))
+      .catch(() => clearAdminPin())
+      .finally(() => setCheckingSession(false))
+  }, [])
+
+  useEffect(() => {
+    if (unlocked && isSupabaseConfigured) {
+      loadEvents()
+      loadCommunity()
+    }
   }, [unlocked])
+
+  if (checkingSession) {
+    return (
+      <div className="clarisa clarisa--gate">
+        <p className="clarisa__sub">Comprobando la sesión…</p>
+      </div>
+    )
+  }
 
   if (!unlocked) return <PinGate onUnlock={() => setUnlocked(true)} />
 
@@ -176,6 +229,41 @@ export default function Clarisa() {
 
   const buildDate = (day: string, time: string) =>
     f.allDay || !time ? day : `${day}T${time}:00`
+
+  const saveCommunity = async (e: FormEvent) => {
+    e.preventDefault()
+    setContentError('')
+
+    if (!community.text.trim() || !community.linkLabel.trim()) {
+      setContentStatus('error')
+      setContentError('El texto y la frase del enlace no pueden quedar vacíos.')
+      return
+    }
+
+    try {
+      const url = new URL(community.whatsappUrl)
+      if (!['http:', 'https:'].includes(url.protocol)) throw new Error()
+    } catch {
+      setContentStatus('error')
+      setContentError('Escribe un enlace de WhatsApp válido.')
+      return
+    }
+
+    setContentStatus('saving')
+    try {
+      await saveCommunityContent({
+        text: community.text.trim(),
+        linkLabel: community.linkLabel.trim(),
+        whatsappUrl: community.whatsappUrl.trim(),
+      })
+      setContentStatus('done')
+    } catch (err) {
+      setContentStatus('error')
+      setContentError(
+        err instanceof Error ? err.message : 'No se pudo guardar el texto.',
+      )
+    }
+  }
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
@@ -247,6 +335,68 @@ export default function Clarisa() {
       {status === 'done' && (
         <p className="form__ok">¡Guardado! 🎉 Ya está en la agenda.</p>
       )}
+
+      <section className="content-editor" aria-labelledby="content-editor-title">
+        <div className="content-editor__heading">
+          <span className="content-editor__eyebrow">Contenido de la página</span>
+          <h2 id="content-editor-title">Texto del final</h2>
+          <p>
+            Cambia la invitación y el enlace que aparecen debajo de los eventos.
+          </p>
+        </div>
+        <form className="form" onSubmit={saveCommunity}>
+          <label className="form__field">
+            <span>Texto</span>
+            <textarea
+              className="input content-editor__textarea"
+              value={community.text}
+              onChange={(event) =>
+                setCommunity((current) => ({
+                  ...current,
+                  text: event.target.value,
+                }))}
+            />
+          </label>
+          <div className="form__row">
+            <label className="form__field">
+              <span>Frase enlazada</span>
+              <input
+                className="input"
+                value={community.linkLabel}
+                onChange={(event) =>
+                  setCommunity((current) => ({
+                    ...current,
+                    linkLabel: event.target.value,
+                  }))}
+              />
+            </label>
+            <label className="form__field">
+              <span>Canal de WhatsApp</span>
+              <input
+                className="input"
+                type="url"
+                value={community.whatsappUrl}
+                onChange={(event) =>
+                  setCommunity((current) => ({
+                    ...current,
+                    whatsappUrl: event.target.value,
+                  }))}
+              />
+            </label>
+          </div>
+          {contentError && <p className="form__error">{contentError}</p>}
+          {contentStatus === 'done' && (
+            <p className="form__ok">Texto actualizado.</p>
+          )}
+          <button
+            type="submit"
+            className="btn btn--primary content-editor__submit"
+            disabled={contentStatus === 'saving' || !isSupabaseConfigured}
+          >
+            {contentStatus === 'saving' ? 'Guardando…' : 'Guardar texto'}
+          </button>
+        </form>
+      </section>
 
       {editing && (
         <div className="form__editing">
@@ -329,13 +479,11 @@ export default function Clarisa() {
             <label className="form__field"><span>Organizador</span><input className="input" value={f.organizer} onChange={(e) => set('organizer', e.target.value)} /></label>
             <label className="form__field"><span>A beneficio de</span><input className="input" value={f.beneficiary} onChange={(e) => set('beneficiary', e.target.value)} /></label>
             <label className="form__field"><span>Qué necesita</span><textarea className="input" value={f.needs} onChange={(e) => set('needs', e.target.value)} /></label>
-            <label className="form__field"><span>Horarios</span><input className="input" value={f.hours} onChange={(e) => set('hours', e.target.value)} placeholder="Ej: Vie 17-22 · Sáb 11-23" /></label>
             <label className="form__field"><span>Teléfono</span><input className="input" value={f.contactPhone} onChange={(e) => set('contactPhone', e.target.value)} /></label>
             <label className="form__field"><span>WhatsApp (link)</span><input className="input" value={f.whatsappUrl} onChange={(e) => set('whatsappUrl', e.target.value)} /></label>
             <label className="form__field"><span>Instagram (link)</span><input className="input" value={f.instagramUrl} onChange={(e) => set('instagramUrl', e.target.value)} /></label>
             <label className="form__field"><span>Entradas (link)</span><input className="input" value={f.ticketUrl} onChange={(e) => set('ticketUrl', e.target.value)} /></label>
             <label className="form__field"><span>Web</span><input className="input" value={f.website} onChange={(e) => set('website', e.target.value)} /></label>
-            <label className="form__field"><span>Line-up (uno por línea)</span><textarea className="input" value={f.lineup} onChange={(e) => set('lineup', e.target.value)} /></label>
             <label className="form__field"><span>Nota</span><textarea className="input" value={f.note} onChange={(e) => set('note', e.target.value)} /></label>
           </div>
         )}
