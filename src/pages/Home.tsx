@@ -101,9 +101,9 @@ export default function Home() {
   const cityOptions = useMemo(
     () =>
       Array.from(
-        new Set(events.map((event) => cityName(event.city)).filter(Boolean)),
+        new Set(list.map((event) => cityName(event.city)).filter(Boolean)),
       ).sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' })),
-    [events],
+    [list],
   )
 
   useEffect(() => {
